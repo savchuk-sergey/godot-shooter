@@ -1,0 +1,23 @@
+local hp = 10  -- Начальное здоровье игрока
+
+function init(self)
+	-- Получаем начальное значение здоровья игрока (может быть передано из скрипта игрока)
+	self.hp = hp
+
+	-- Устанавливаем начальное значение текста
+	update_health(self.hp)
+end
+
+-- Функция для обновления текста здоровья
+function update_health(hp)
+	local health_node = gui.get_node("health_text")  -- Получаем текстовый узел
+	gui.set_text(health_node, "HP: " .. tostring(hp))  -- Обновляем текст
+end
+
+-- Сообщение для изменения здоровья
+function on_message(self, message_id, message, sender)
+	if message_id == hash("update_hp") then
+		self.hp = message.hp  -- Обновляем здоровье
+		update_health(self.hp)  -- Обновляем текст в UI
+	end
+end
