@@ -1,4 +1,8 @@
 name: "main"
+instances {
+  id: "light_quad"
+  prototype: "/lights/render/light_quad.go"
+}
 scale_along_z: 0
 embedded_instances {
   id: "map"
@@ -7,24 +11,10 @@ embedded_instances {
   "  component: \"/scripts/main.script\"\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"background\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"background\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/assets/main.atlas\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "  position {\n"
-  "    z: -0.5\n"
-  "  }\n"
-  "}\n"
-  "embedded_components {\n"
   "  id: \"map\"\n"
   "  type: \"sprite\"\n"
   "  data: \"default_animation: \\\"map\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "material: \\\"/lights/materials/light_occluder_sprite.material\\\"\\n"
   "textures {\\n"
   "  sampler: \\\"texture_sampler\\\"\\n"
   "  texture: \\\"/assets/main.atlas\\\"\\n"
@@ -165,6 +155,20 @@ embedded_instances {
   "  id: \"player script\"\n"
   "  component: \"/scripts/player.script\"\n"
   "}\n"
+  "components {\n"
+  "  id: \"lightsource\"\n"
+  "  component: \"/lights/lightsource.script\"\n"
+  "  properties {\n"
+  "    id: \"radius\"\n"
+  "    value: \"400.0\"\n"
+  "    type: PROPERTY_TYPE_NUMBER\n"
+  "  }\n"
+  "  properties {\n"
+  "    id: \"falloff\"\n"
+  "    value: \"2.0\"\n"
+  "    type: PROPERTY_TYPE_NUMBER\n"
+  "  }\n"
+  "}\n"
   "embedded_components {\n"
   "  id: \"player\"\n"
   "  type: \"sprite\"\n"
@@ -285,4 +289,15 @@ embedded_instances {
   "  component: \"/gui/onscreen.gui\"\n"
   "}\n"
   ""
+}
+embedded_instances {
+  id: "floor"
+  data: "components {\n"
+  "  id: \"floor\"\n"
+  "  component: \"/main/floor.tilemap\"\n"
+  "}\n"
+  ""
+  position {
+    z: -0.5
+  }
 }

@@ -1,21 +1,5 @@
 local onscreen = require "in.onscreen"
 
-local function on_control(action, node, touch)
-	if action == onscreen.ANALOG then
-		if touch.pressed then
-			print("pressed analog", touch.id)
-		elseif touch.released then
-			print("released analog", touch.id)
-		else
-			print("moved analog", touch.id, touch.x, touch.y)
-		end
-	elseif action == onscreen.ANALOG_UP then
-		if touch.pressed then
-			print("analog stick is pushed up beyond specified threshold")
-		end
-	end
-end
-
 function init(self)
 	msg.post(".", "acquire_input_focus")
 
@@ -31,6 +15,5 @@ function final(self)
 end
 
 function on_input(self, action_id, action)
-	-- print("Onscreen action: " + action.action_id)
 	onscreen.on_input(action_id, action)
 end
